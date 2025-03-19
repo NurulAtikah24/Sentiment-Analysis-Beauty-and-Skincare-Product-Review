@@ -16,6 +16,7 @@ from PIL import Image
 
 # Download NLTK resources
 nltk.download('punkt')
+nltk.download('punkt_tab')
 nltk.download('wordnet')
 nltk.download('stopwords')
 nltk.download('vader_lexicon')
@@ -158,14 +159,13 @@ def main():
         with st.form(key='nlpForm'):
             product_name = st.text_input("**Enter Product Name:**")
             product_review = st.text_area("**Enter Product Review:**")
+            submit_button = st.form_submit_button(label='**Analyze**')
 
             #original_text = st.text_area("**Original Text:**")
             if product_review:
                 # Clean and lemmatize the text
                 lemmatized_text = clean_and_lemmatize_text(product_review)
                 st.write("**Cleaned Text:**", lemmatized_text)
-
-            submit_button = st.form_submit_button(label='**Analyze**')
 
         if submit_button:
             word_count = len(product_review.split())
